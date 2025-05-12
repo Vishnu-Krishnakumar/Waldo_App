@@ -40,3 +40,17 @@
 .read-the-docs {
   color: #888;
 }
+
+.test{
+  width:300px;
+  height:300px;
+  border:red 1px solid;
+}
+
+.dropDown{
+  position:fixed;
+  background-color: transparent;
+  z-index: 1000;
+  padding:20px; 
+  
+}
