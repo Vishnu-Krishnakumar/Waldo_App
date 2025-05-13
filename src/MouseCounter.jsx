@@ -7,8 +7,12 @@ function MouseCounter(){
 
   const mouseClick = (event) =>{
     event.preventDefault();
-    setLocalMousePos({ x: event.clientX , y: event.clientY  });
+    if(event.target.className === "dropItems") return;
+    if(!dropdownRef.current) return;
+    const boundingRect = dropdownRef.current.getBoundingClientRect();
+    setLocalMousePos({ x: event.clientX - boundingRect.left  , y: event.clientY - boundingRect.top });
     setOpen(true);
+    console.log(event.target);
   }
  
   useEffect(() => {
@@ -20,25 +24,24 @@ function MouseCounter(){
         setOpen(false);
       }
     };
-
+    
     if (isOpen) {
       document.addEventListener("mousedown", handleClickOutside);
     } else {
       document.removeEventListener("mousedown", handleClickOutside);
     }
 
-    // Cleanup
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isOpen]);
 
   return(
-    <div onClick={mouseClick} className ="test">
+    <div onClick={mouseClick} ref={dropdownRef} style={{ position: "relative" } } className ="test">
   
     {isOpen && (
-        <div className="dropDown" ref={dropdownRef} style={{top:localMousePos.y, left:localMousePos.x}}>
-          <DropDown items ={["waldo","someGuy","Some Wizard"]}></DropDown>
+        <div className="dropDown"  style={{position: "absolute", top:localMousePos.y, left:localMousePos.x}}>
+          <DropDown position = {localMousePos} items ={["waldo","someGuy","Some Wizard"]}></DropDown>
         </div>
     )}
     </div>

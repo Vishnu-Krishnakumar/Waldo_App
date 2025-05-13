@@ -1,14 +1,16 @@
 import React, { useState, useRef, useEffect } from 'react';
-function DropDown({ items }) {
-  const [isOpen, setIsOpen] = useState(false);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-  const dropdownRef = useRef(null);
+function DropDown({ items, position }) {
+
+  const onClick = (event)=>{
+    event.preventDefault();
+    console.log(position);
+  }
   return(
-    <>
+    <div>
      {items.map((item,index)=>{
-      return <li key = {index}>{item}</li>
+      return <li className = "dropItems" onClick ={onClick} key = {index}>{item}</li>
      })}
-    </>
+    </div>
   )  
 }
 
