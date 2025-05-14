@@ -13,7 +13,6 @@ function MouseCounter(){
     if(!dropdownRef.current) return;
     const boundingRect = dropdownRef.current.getBoundingClientRect();
     setLocalMousePos({ x: event.clientX - boundingRect.left  , y: event.clientY - boundingRect.top });
-    // setMarked( [...marked,{x: event.clientX - boundingRect.left  , y: event.clientY - boundingRect.top}] );
     setOpen(true);
   }
   

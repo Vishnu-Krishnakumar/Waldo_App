@@ -12,7 +12,7 @@ async function confirmCoordinates(coords){
   //   const data = await response.json();
   //   return data;
   // }catch(error){console.log(error)};
-  return false;
+  return true;
 }
 
 export {confirmCoordinates}

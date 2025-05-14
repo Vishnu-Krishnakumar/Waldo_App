@@ -1,5 +1,4 @@
 #root {
-  max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
@@ -47,14 +46,14 @@
 
 .dropDown{
   position:absolute;
-  background-color: transparent;
+  background-color: black;
   z-index: 1000;
-  padding:20px; 
+  padding:10px; 
 }
 
 .marked{
-  width:15px;
-  height:15px;
+  width:25px;
+  height:25px;
   border-radius: 20px;
-  border: 1px red solid;
+  border: 1px green solid;
 }
