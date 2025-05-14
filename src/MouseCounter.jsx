@@ -3,6 +3,7 @@ import DropDown from './DropDown.jsx'
 function MouseCounter(){
   const [localMousePos, setLocalMousePos] = useState({});
   const [isOpen, setOpen] = useState(false);
+  const [marked,setMarked] = useState([]);
   const dropdownRef = useRef(null);
 
   const mouseClick = (event) =>{
@@ -11,10 +12,10 @@ function MouseCounter(){
     if(!dropdownRef.current) return;
     const boundingRect = dropdownRef.current.getBoundingClientRect();
     setLocalMousePos({ x: event.clientX - boundingRect.left  , y: event.clientY - boundingRect.top });
+    setMarked( [...marked,{x: event.clientX - boundingRect.left  , y: event.clientY - boundingRect.top}] );
     setOpen(true);
-    console.log(event.target);
   }
- 
+  
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -37,11 +38,13 @@ function MouseCounter(){
   }, [isOpen]);
 
   return(
-    <div onClick={mouseClick} ref={dropdownRef} style={{ position: "relative" } } className ="test">
-  
+    <div onClick={mouseClick} ref={dropdownRef} className ="container">
+    {marked.map((pos)=>{
+      return <div className="marked" style ={{position:"absolute",top:pos.y, left:pos.x}}> </div>
+    })}  
     {isOpen && (
         <div className="dropDown"  style={{position: "absolute", top:localMousePos.y, left:localMousePos.x}}>
-          <DropDown position = {localMousePos} items ={["waldo","someGuy","Some Wizard"]}></DropDown>
+          <DropDown ref = {dropdownRef} position = {localMousePos} items ={["waldo","someGuy","Some Wizard"]}></DropDown>
         </div>
     )}
     </div>

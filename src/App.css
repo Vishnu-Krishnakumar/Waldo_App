@@ -41,16 +41,23 @@
   color: #888;
 }
 
-.test{
+.container{
   width:300px;
   height:300px;
   border:red 1px solid;
+  position: relative;
 }
 
 .dropDown{
-  position:fixed;
+  position:absolute;
   background-color: transparent;
   z-index: 1000;
   padding:20px; 
-  
+}
+
+.marked{
+  width:15px;
+  height:15px;
+  border-radius: 20px;
+  border: 1px red solid;
 }
