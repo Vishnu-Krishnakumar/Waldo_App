@@ -1,9 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react';
-function DropDown({ items, position }) {
+import {confirmCoordinates} from './serverUtils/server'
+function DropDown({ items, position,boundingRect,setMarked, marked }) {
 
   const onClick = (event)=>{
     event.preventDefault();
     console.log(position);
+    if(confirmCoordinates(position) === true ){
+      console.log(boundingRect.left);
+      setMarked([...marked, {x:position.x , y:position.y }]);
+    }
   }
   return(
     <div>

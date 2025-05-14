@@ -1,5 +1,6 @@
 import { useEffect,useState,useRef } from "react";
-import DropDown from './DropDown.jsx'
+import DropDown from './DropDown.jsx';
+import waldo from './assets/waldo.jpg';
 function MouseCounter(){
   const [localMousePos, setLocalMousePos] = useState({});
   const [isOpen, setOpen] = useState(false);
@@ -12,7 +13,7 @@ function MouseCounter(){
     if(!dropdownRef.current) return;
     const boundingRect = dropdownRef.current.getBoundingClientRect();
     setLocalMousePos({ x: event.clientX - boundingRect.left  , y: event.clientY - boundingRect.top });
-    setMarked( [...marked,{x: event.clientX - boundingRect.left  , y: event.clientY - boundingRect.top}] );
+    // setMarked( [...marked,{x: event.clientX - boundingRect.left  , y: event.clientY - boundingRect.top}] );
     setOpen(true);
   }
   
@@ -39,12 +40,13 @@ function MouseCounter(){
 
   return(
     <div onClick={mouseClick} ref={dropdownRef} className ="container">
+      <img src = {waldo}></img>
     {marked.map((pos)=>{
       return <div className="marked" style ={{position:"absolute",top:pos.y, left:pos.x}}> </div>
     })}  
     {isOpen && (
         <div className="dropDown"  style={{position: "absolute", top:localMousePos.y, left:localMousePos.x}}>
-          <DropDown ref = {dropdownRef} position = {localMousePos} items ={["waldo","someGuy","Some Wizard"]}></DropDown>
+          <DropDown boundingRect = {dropdownRef.current.getBoundingClientRect()} setMarked = {setMarked} marked = {marked} position = {localMousePos} items ={["waldo","someGuy","Some Wizard"]}></DropDown>
         </div>
     )}
     </div>
