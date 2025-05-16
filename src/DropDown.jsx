@@ -6,7 +6,6 @@ function DropDown({ items, position,boundingRect,setMarked, marked }) {
     event.preventDefault();
     console.log(position);
     if( await confirmCoordinates(position) === true ){
-      console.log(boundingRect.left);
       setMarked([...marked, {x:position.x , y:position.y }]);
     }
   }
