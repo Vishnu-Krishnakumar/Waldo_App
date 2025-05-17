@@ -57,3 +57,9 @@
   border-radius: 20px;
   border: 1px green solid;
 }
+
+.portrait{
+  height:100px;
+  width:150px;
+  padding:5px;
+}

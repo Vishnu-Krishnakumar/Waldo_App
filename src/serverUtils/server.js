@@ -16,4 +16,22 @@ async function confirmCoordinates(coords){
 
 }
 
-export {confirmCoordinates}
+async function getTime(){
+  try{
+    const response = await fetch(`http://localhost:3000/timer`,{
+      mode:"cors",
+      method:"GET",
+      credentials:"include",
+      headers:{
+        "Content-Type":"application/json",
+      },
+    });
+    const data = await response.json();
+    return data;
+  }catch(error){console.log(error)}
+}
+
+export {
+  confirmCoordinates,
+  getTime,
+}
