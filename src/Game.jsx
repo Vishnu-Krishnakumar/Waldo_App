@@ -1,12 +1,13 @@
 import { useEffect,useState,useRef } from "react";
 import DropDown from './DropDown.jsx';
 import waldo from './assets/waldo.jpg';
-function MouseCounter(){
+import {confirmCoordinates} from './serverUtils/server'
+function Game(){
   const [localMousePos, setLocalMousePos] = useState({});
   const [isOpen, setOpen] = useState(false);
   const [marked,setMarked] = useState([]);
   const dropdownRef = useRef(null);
-
+  const [characters,setCharacters] = useState({});
   const mouseClick = (event) =>{
     event.preventDefault();
     if(event.target.className === "dropItems") return;
@@ -15,7 +16,15 @@ function MouseCounter(){
     setLocalMousePos({ x: event.clientX - boundingRect.left  , y: event.clientY - boundingRect.top });
     setOpen(true);
   }
-  
+  useEffect(()=>{
+    async function getCharacterCoords(){
+      const data = await confirmCoordinates();
+      setCharacters(data);
+    }
+
+    getCharacterCoords();
+  },[])
+
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -45,11 +54,11 @@ function MouseCounter(){
     })}  
     {isOpen && (
         <div className="dropDown"  style={{position: "absolute", top:localMousePos.y, left:localMousePos.x}}>
-          <DropDown boundingRect = {dropdownRef.current.getBoundingClientRect()} setMarked = {setMarked} marked = {marked} position = {localMousePos} items ={["waldo","someGuy","Some Wizard"]}></DropDown>
+          <DropDown characters ={characters} boundingRect = {dropdownRef.current.getBoundingClientRect()} setMarked = {setMarked} marked = {marked} position = {localMousePos} items ={["Waldo","Odlaw","Wizard"]}></DropDown>
         </div>
     )}
     </div>
   )
 }
 
-export default MouseCounter;
+export default Game;

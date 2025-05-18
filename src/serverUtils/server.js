@@ -1,7 +1,7 @@
 
-async function confirmCoordinates(coords){
+async function confirmCoordinates(){
   try{
-    const response = await fetch(`http://localhost:3000/locate?character=Waldo&x=${coords.x}&y=${coords.y}`,{
+    const response = await fetch(`http://localhost:3000/locate`,{
         mode:"cors",
         method:"GET",
         credentials:"include",
@@ -11,7 +11,7 @@ async function confirmCoordinates(coords){
     });
     const data = await response.json();
     console.log(data);
-    return data.found;
+    return data;
   }catch(error){console.log(error)};
 
 }
