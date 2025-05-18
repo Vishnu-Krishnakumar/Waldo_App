@@ -26,8 +26,14 @@ async function getTime(){
         "Content-Type":"application/json",
       },
     });
-    const data = await response.json();
-    return data;
+    let data = await response.json();
+
+    data = data.token.split('.');
+  
+
+    data = parseInt(JSON.parse(atob(data[1])).start);
+
+    return (data);
   }catch(error){console.log(error)}
 }
 

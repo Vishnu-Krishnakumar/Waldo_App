@@ -11,10 +11,16 @@ import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
-
+  const [start,setStart] = useState(false);
+  function click(){
+    setStart(!start);
+  }
   return (
     <>
-      <Timer></Timer>
+      <button onClick={click}>Start</button>
+      {start ?(
+        <div>
+          <Timer></Timer>
       <div>
        <img className = "portrait" src = {odlaw}></img>
        <img className = "portrait" src = {waldo}></img>
@@ -23,6 +29,9 @@ function App() {
       <div>
       <MouseCounter></MouseCounter>
       </div>
+        </div>
+      ) : null}
+      
       
       
     </>
