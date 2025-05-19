@@ -2,12 +2,14 @@ import { useEffect,useState,useRef } from "react";
 import DropDown from './DropDown.jsx';
 import waldo from './assets/waldo.jpg';
 import {confirmCoordinates} from './serverUtils/server'
-function Game(){
+function Game({found,setFound}){
   const [localMousePos, setLocalMousePos] = useState({});
   const [isOpen, setOpen] = useState(false);
   const [marked,setMarked] = useState([]);
-  const dropdownRef = useRef(null);
   const [characters,setCharacters] = useState({});
+  
+  const dropdownRef = useRef(null);
+
   const mouseClick = (event) =>{
     event.preventDefault();
     if(event.target.className === "dropItems") return;
@@ -54,7 +56,16 @@ function Game(){
     })}  
     {isOpen && (
           <div className="dropDown"  style={{position: "absolute", top:localMousePos.y, left:localMousePos.x+25}}>
-            <DropDown characters ={characters} boundingRect = {dropdownRef.current.getBoundingClientRect()} setMarked = {setMarked} marked = {marked} position = {localMousePos} items ={["Waldo","Odlaw","Wizard"]}></DropDown>
+            <DropDown 
+              characters ={characters} 
+              boundingRect = {dropdownRef.current.getBoundingClientRect()}
+              setMarked = {setMarked} 
+              marked = {marked} 
+              position = {localMousePos}
+              items ={["Waldo","Odlaw","Wizard"]} 
+              found = {found} 
+              setFound ={setFound}
+            />  
           </div>
     )}
     {isOpen &&(

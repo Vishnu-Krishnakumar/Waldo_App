@@ -13,7 +13,7 @@ function App() {
   const [count, setCount] = useState(0)
   const [start,setStart] = useState(false);
   const [begin,setBegin] = useState(false);
-
+  const [found, setFound] = useState({odlaw:false,waldo:false,wizard:false});
   function click(){
     setStart(!start);
     setBegin(false);
@@ -24,15 +24,15 @@ function App() {
       <button onClick={click}>Start</button>
       {start ?(
         <div>
-          <Timer setBegin ={setBegin}></Timer>
+          <Timer found = {found} setFound ={setFound} setBegin ={setBegin}></Timer>
       <div>
-       <img className = "portrait" src = {odlaw}></img>
-       <img className = "portrait" src = {waldo}></img>
-       <img className = "portrait" src = {wizard}></img>
+       <img className={found.odlaw ? "found" : "portrait"} src = {odlaw}></img>
+       <img className={found.waldo ? "found" : "portrait"} src = {waldo}></img>
+       <img className={found.wizard ? "found" : "portrait"} src = {wizard}></img>
       </div>
       {begin?(
         <div>
-        <Game></Game>
+        <Game found = {found} setFound = {setFound}></Game>
         </div>  
       ): null}
       

@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
-import { getTime } from './serverUtils/server';
+import { getTime, postScore } from './serverUtils/server';
 
-function Timer({setBegin}) {
+function Timer({setBegin,found,setfound}) {
   const [startTime, setStartTime] = useState(null);
   const [localStartTime, setLocalStartTime] = useState(null);
   const [elapsed, setElapsed] = useState(0);
@@ -29,6 +29,18 @@ function Timer({setBegin}) {
     return () => clearInterval(intervalRef.current);
   }, []);
   
+  useEffect(()=>{
+    async function post(time){
+      const data = await postScore(time);
+      console.log(data);
+    }
+    if(found.odlaw && found.waldo && found.wizard){
+      console.log("You win!");
+      clearInterval(intervalRef.current);
+      post((elapsed/1000).toFixed(2));
+    
+    }
+  },[found]);
   return (
     <div className="timer">
       <h3>Time passed: {(elapsed / 1000).toFixed(2)}</h3>

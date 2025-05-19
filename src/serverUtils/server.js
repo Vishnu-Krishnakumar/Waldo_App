@@ -37,7 +37,27 @@ async function getTime(){
   }catch(error){console.log(error)}
 }
 
+async function postScore(data){
+  const body ={ data }
+  try{
+    const response = await fetch(`http://localhost:3000/score`,{
+      mode: "cors",
+      method:"POST",
+      credentials: "include",
+      headers:{
+        "Content-Type":"application/json",
+      },
+      body: JSON.stringify(body),
+    });
+    const data = await response.json();
+    console.log(data);
+    return data;
+  }catch(error){console.log(error)}
+}
+
+
 export {
   confirmCoordinates,
   getTime,
+  postScore
 }

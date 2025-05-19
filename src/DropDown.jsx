@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import {confirmCoordinates} from './serverUtils/server'
-function DropDown({ characters, items, position,boundingRect,setMarked, marked }) {
+function DropDown({ characters, items, position,boundingRect,setMarked, marked, found, setFound }) {
 
   const onClick = async(event)=>{
     event.preventDefault();
@@ -15,9 +15,23 @@ function DropDown({ characters, items, position,boundingRect,setMarked, marked }
         position.y <= char.y + char.height
       )
       });
+
       if(found){
         setMarked([...marked, {x:position.x , y:position.y }]);
+        switch(found.name){
+          case "Odlaw":
+            setFound(prev => ({ ...prev, odlaw: true }));
+            break;
+          case "Waldo":
+            setFound(prev => ({ ...prev, waldo: true }));
+            break;
+          case "Wizard":
+            setFound(prev => ({ ...prev, wizard: true }));
+            break;
+       }
       };
+      
+      
   }
   
   return(
