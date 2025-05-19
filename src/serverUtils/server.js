@@ -55,9 +55,24 @@ async function postScore(data){
   }catch(error){console.log(error)}
 }
 
-
+async function highScores(){
+  try{
+    const response = await fetch("http://localhost:3000/score",{
+      mode:"cors",
+      method:"GET",
+      credentials:"include",
+      headers:{
+        "Content-Type":"application/json",
+      },
+    });
+    const data = await response.json();
+    console.log(data);
+    return data;
+  }catch(error){console.log(error)}
+}
 export {
   confirmCoordinates,
   getTime,
-  postScore
+  postScore,
+  highScores,
 }
