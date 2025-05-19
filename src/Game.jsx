@@ -50,12 +50,16 @@ function Game(){
     <div onClick={mouseClick} ref={dropdownRef} className ="container">
       <img src = {waldo}></img>
     {marked.map((pos)=>{
-      return <div className="marked" style ={{position:"absolute",top:pos.y, left:pos.x}}> </div>
+      return <div className="marked" style ={{position:"absolute",top:pos.y - 15, left:pos.x - 15}}> </div>
     })}  
     {isOpen && (
-        <div className="dropDown"  style={{position: "absolute", top:localMousePos.y, left:localMousePos.x}}>
-          <DropDown characters ={characters} boundingRect = {dropdownRef.current.getBoundingClientRect()} setMarked = {setMarked} marked = {marked} position = {localMousePos} items ={["Waldo","Odlaw","Wizard"]}></DropDown>
-        </div>
+          <div className="dropDown"  style={{position: "absolute", top:localMousePos.y, left:localMousePos.x+25}}>
+            <DropDown characters ={characters} boundingRect = {dropdownRef.current.getBoundingClientRect()} setMarked = {setMarked} marked = {marked} position = {localMousePos} items ={["Waldo","Odlaw","Wizard"]}></DropDown>
+          </div>
+    )}
+    {isOpen &&(
+      <div className = "target" style = {{position:"absolute", top:localMousePos.y-25 , left:localMousePos.x -15 }}>
+      </div>  
     )}
     </div>
   )

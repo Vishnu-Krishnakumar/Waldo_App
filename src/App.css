@@ -55,11 +55,21 @@
   width:25px;
   height:25px;
   border-radius: 20px;
-  border: 1px green solid;
+  z-index: 1000;
+  border: 5px green solid;
 }
 
 .portrait{
   height:100px;
   width:150px;
   padding:5px;
+  
+}
+
+.target{
+
+  height:50px;
+  width:25px;
+  border: 5px red solid;
+  z-index: 1000;
 }
