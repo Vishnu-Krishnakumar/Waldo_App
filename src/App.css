@@ -46,11 +46,13 @@
 
 .dropDown{
   position:absolute;
-  background-color: black;
+  background-color: rgb(255, 255, 255);
   z-index: 1000;
   padding:10px; 
 }
-
+.dropDown li:hover{
+  background-color: aquamarine;
+}
 .marked{
   width:25px;
   height:25px;
@@ -79,4 +81,22 @@
   width:150px;
   padding:5px;
   opacity: 0.2;
+}
+.highScores{
+  display: flex;
+  flex-direction: column;
+  margin:20px;
+  border:15px solid green;
+  border-radius: 5px;
+  align-items: start;
+  justify-content: center;
+  max-width: 250px;
+}
+.highScores li{
+  padding:5px;
+  
+}
+li{
+  list-style-type: none;
+
 }

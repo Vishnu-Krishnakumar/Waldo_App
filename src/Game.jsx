@@ -2,7 +2,7 @@ import { useEffect,useState,useRef } from "react";
 import DropDown from './DropDown.jsx';
 import waldo from './assets/waldo.jpg';
 import {confirmCoordinates} from './serverUtils/server'
-function Game({found,setFound}){
+function Game({found,setFound,setMessage}){
   const [localMousePos, setLocalMousePos] = useState({});
   const [isOpen, setOpen] = useState(false);
   const [marked,setMarked] = useState([]);
@@ -57,6 +57,7 @@ function Game({found,setFound}){
     {isOpen && (
           <div className="dropDown"  style={{position: "absolute", top:localMousePos.y, left:localMousePos.x+25}}>
             <DropDown 
+              setMessage ={setMessage}
               characters ={characters} 
               boundingRect = {dropdownRef.current.getBoundingClientRect()}
               setMarked = {setMarked} 

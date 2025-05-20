@@ -32,12 +32,12 @@ function Timer({setBegin,found,setfound,setTime}) {
   useEffect(()=>{
     async function post(time){
       const data = await postScore(time);
-      console.log(data);
+
     }
     if(found.odlaw && found.waldo && found.wizard){
-      console.log("You win!");
+
       clearInterval(intervalRef.current);
-      // post((elapsed/1000).toFixed(2));
+
       setTime((elapsed/1000).toFixed(2));
     
     }

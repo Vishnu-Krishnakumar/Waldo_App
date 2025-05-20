@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import {confirmCoordinates} from './serverUtils/server'
-function DropDown({ characters, items, position,boundingRect,setMarked, marked, found, setFound }) {
+function DropDown({ characters, items, position,boundingRect,setMarked, marked, found, setFound,setMessage }) {
 
   const onClick = async(event)=>{
     event.preventDefault();
@@ -29,9 +29,12 @@ function DropDown({ characters, items, position,boundingRect,setMarked, marked, 
             setFound(prev => ({ ...prev, wizard: true }));
             break;
        }
-      };
-      
-      
+      }
+      else{
+        setMessage("Incorrect!")
+        setTimeout(()=> setMessage(""),3000)
+      }
+    
   }
   
   return(
