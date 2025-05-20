@@ -1,7 +1,7 @@
 
 async function confirmCoordinates(){
   try{
-    const response = await fetch(`http://localhost:3000/locate`,{
+    const response = await fetch(`https://waldoapi-r65s.onrender.com/locate`,{
         mode:"cors",
         method:"GET",
         credentials:"include",
@@ -18,7 +18,7 @@ async function confirmCoordinates(){
 
 async function getTime(){
   try{
-    const response = await fetch(`http://localhost:3000/timer`,{
+    const response = await fetch(`https://waldoapi-r65s.onrender.com/timer`,{
       mode:"cors",
       method:"GET",
       credentials:"include",
@@ -41,7 +41,7 @@ async function postScore(data){
   const body ={ username:data.username, time:data.time };
   console.log(body);
   try{
-    const response = await fetch(`http://localhost:3000/score`,{
+    const response = await fetch(`https://waldoapi-r65s.onrender.com/score`,{
       mode: "cors",
       method:"POST",
       credentials: "include",
@@ -58,7 +58,7 @@ async function postScore(data){
 
 async function highScores(){
   try{
-    const response = await fetch("http://localhost:3000/score",{
+    const response = await fetch("https://waldoapi-r65s.onrender.com/score",{
       mode:"cors",
       method:"GET",
       credentials:"include",
