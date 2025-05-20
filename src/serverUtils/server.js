@@ -38,7 +38,8 @@ async function getTime(){
 }
 
 async function postScore(data){
-  const body ={ data }
+  const body ={ username:data.username, time:data.time };
+  console.log(body);
   try{
     const response = await fetch(`http://localhost:3000/score`,{
       mode: "cors",

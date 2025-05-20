@@ -26,18 +26,16 @@ function App() {
   }
 
   async function post(formData){
-
     await postScore({username:formData.get("username"), time:time});
+    high();
     setStart(!start);
+    
   }
-  useEffect(()=>{
-    async function high(){
-        const data =  await highScores();
-
-        setScores(data);
-    }
-  high();
-},[])
+  
+  async function high(){
+    const data =  await highScores();
+    setScores(data);
+  }
   return (
     <div className = "content">
       <h1> Where's Waldo!</h1>
