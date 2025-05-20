@@ -31,7 +31,7 @@ function App() {
     setStart(!start);
     
   }
-  
+
   async function high(){
     const data =  await highScores();
     setScores(data);
@@ -59,7 +59,7 @@ function App() {
             <div>
             <form action ={post}>
               <label>User Name:</label>
-              <input name = "username"/>
+              <input required type ="text" name = "username"/>
               <button type ="submit">Submit</button>
             </form>
             </div>
